@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
 app.set('view engine', 'ejs');
+app.use(express.static("public"));
+
 var items =[];
 
 app.get("/", function(req, res){
@@ -15,7 +17,7 @@ month: "long"
 
 var day = today.toLocaleString("en-US", options);
 
-res.render("list", {kindOfDay:day, newListItems:items});
+res.render("list", {listTitle:day, newListItems:items});
 
 });
 
